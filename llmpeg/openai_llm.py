@@ -62,6 +62,8 @@ class OpenAILLMInterface(LLMInterface):
             model=self._model_string,
             response_format={"type": "json_object"},
             messages=self.history,
+            temperature=0.2,
+            top_p=0.2,
         )
 
         # Extract the LLM's decision from the response
