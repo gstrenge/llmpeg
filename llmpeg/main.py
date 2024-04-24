@@ -215,7 +215,7 @@ class LLMPEG:
             print(f"\n\t{command}\n")
 
             confirmation = input(
-                "Execute? (Y/enter OR N/no OR clarify instructions: "
+                "Execute? (Y/enter OR N/no OR clarify instructions): "
             )
 
             # If they want to quit, lets quit
