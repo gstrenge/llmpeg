@@ -1,19 +1,19 @@
 # llmpeg
 
-Let's be honest, who really knows how to use `ffmpeg`. Its that tool that is so helpful but not needed enough to justify learning all of its inner workings. The days of scrolling through stackoverflow are over, with `llmpeg`. This CLI tool interfaces with an OpenAI LLM (and has support for other LLM API providers) to convert your plain text commands into OS/platform specific ffmpeg commands. 
+Let's be honest, who really knows how to use [`ffmpeg`](https://github.com/FFmpeg/FFmpeg). Its that tool that is so helpful but not needed enough to justify learning all of its inner workings. The days of scrolling through stackoverflow are over, with `llmpeg`. This CLI tool interfaces with an OpenAI LLM (and has support for other LLM API providers) to convert your plain text commands into OS/platform specific ffmpeg commands. 
 
-`llmpeg` is a powerful wrapper around the popular multimedia library `ffmpeg`, designed to simplify video and audio processing for users who are not familiar with the intricacies of `ffmpeg` commands. By leveraging language model technology, `llmpeg` allows users to describe their multimedia processing tasks in natural language, and the tool generates and executes the appropriate `ffmpeg` commands automatically.
+`llmpeg` is a powerful wrapper around [the popular multimedia library `ffmpeg`](https://github.com/FFmpeg/FFmpeg), designed to simplify video and audio processing for users who are not familiar with the intricacies of [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) commands. By leveraging language model technology, `llmpeg` allows users to describe their multimedia processing tasks in natural language, and the tool generates and executes the appropriate [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) commands automatically.
 
 ![](imgs/shell-tools.gif)
 
 ## Features
 
 - **Ease of Use**: Simplify multimedia command generation using natural language inputs.
-- **Powerful**: Leverage the full power of `ffmpeg` without the need to learn its complex options.
+- **Powerful**: Leverage the full power of [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) without the need to learn its complex options.
 - **Flexible**: Suitable for a wide range of multimedia tasks from simple conversions to complex processing workflows.
 - **Extensible**: LLM Interface allows for other LLM providers (i.e. Amazon Bedrock, Anthropic, etc.) to work as drop-in replacement for OpenAI LLM
 - **Conversational**: Supports back-and-forth conversation with the LLM to fix mistakes or clarify misunderstandings
-- **Contextual Awareness**: `llmpeg` is provided context on your OS, OS version, `ffpmeg` version, and `ffmpeg` executable path to ensure commands are tailored for your platform.
+- **Contextual Awareness**: `llmpeg` is provided context on your OS, OS version, [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) version, and [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) executable path to ensure commands are tailored for your platform.
 
 ![](imgs/conversation.gif)
 
