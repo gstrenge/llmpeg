@@ -99,3 +99,21 @@ def test_llmpeg_chat(mock_llm_interface):
     explanation, command = llmpeg.chat("Convert video format")
     assert "Test Explanation" in explanation
     assert "ffmpeg -i input.mp4 output.mp4" == command
+
+
+def test_missing_ffmpeg_executable(mock_llm_interface):
+    """Test the graceful exit path if ffmpeg is not found.
+
+    Patches the behavior of shutil.which detects the ffmpeg executable
+    to return None, which is the behavior if it doesn't find it.
+
+    Args:
+        mock_llm_interface (MagicMock): Mocked LLMInterface provided by the
+            fixture.
+    """
+    with pytest.raises(SystemExit) as e, patch(
+        "shutil.which", side_effect=[None]
+    ):
+        _ = LLMPEG(mock_llm_interface)
+    assert e.type == SystemExit
+    assert e.value.code == 1

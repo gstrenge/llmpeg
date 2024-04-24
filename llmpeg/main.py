@@ -9,6 +9,7 @@ import shutil
 import pwd
 import argparse
 import subprocess
+import sys
 from llmpeg.llm_interface import LLMInterface
 from llmpeg.openai_llm import OpenAILLMInterface
 
@@ -35,6 +36,11 @@ class LLMPEG:
                 the LLMInterface.
         """
         self.llm_interface = llm_interface
+        try:
+            self._ffmpeg_executable = self.get_ffmpeg_executable()
+        except FileNotFoundError as e:
+            print(e, file=sys.stderr)
+            exit(1)
 
         self._ffmpeg_version_info = self.get_ffmpeg_version()
         self._os_type, self._os_info = self.get_os_info()
@@ -44,7 +50,7 @@ class LLMPEG:
         <system_info>{self._os_info}</system_info>
         <shell>{self._default_shell}</shell>
         <ffmpeg_version>{self._ffmpeg_version_info}</ffmpeg_version>
-        <ffmpeg_executable_path>{self.ffmpeg_executable}</ffmpeg_executable_path>
+        <ffmpeg_executable_path>{self._ffmpeg_executable}</ffmpeg_executable_path>
 
         You are to respond with JSON, with two keys: <key>explanation</key> and <key>command</key>.
 
@@ -57,8 +63,7 @@ class LLMPEG:
         """  # noqa: E501
         self.llm_interface.add_system_prompt(self.system_prompt)
 
-    @property
-    def ffmpeg_executable(self):
+    def get_ffmpeg_executable(self):
         """Find and return the executable path for ffmpeg.
 
         Returns:
@@ -81,7 +86,7 @@ class LLMPEG:
             str: A string containing all the version information about ffmpeg.
         """
         return subprocess.run(
-            [self.ffmpeg_executable],
+            [self._ffmpeg_executable],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
