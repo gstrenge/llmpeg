@@ -1,4 +1,7 @@
 # llmpeg
+[![Ubuntu](https://github.com/gstrenge/llmpeg/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/gstrenge/llmpeg/actions/workflows/ubuntu.yml)
+[![macOS](https://github.com/gstrenge/llmpeg/actions/workflows/macos.yml/badge.svg)](https://github.com/gstrenge/llmpeg/actions/workflows/macos.yml)
+[![Windows](https://github.com/gstrenge/llmpeg/actions/workflows/windows.yml/badge.svg)](https://github.com/gstrenge/llmpeg/actions/workflows/windows.yml) (Windows works fine, just a windows specific test is failing for poor reason, working on updating the test!)
 
 Let's be honest, who really knows how to use [`ffmpeg`](https://github.com/FFmpeg/FFmpeg). Its that tool that is so helpful but not needed enough to justify learning all of its inner workings. The days of scrolling through stackoverflow are over, with `llmpeg`. This CLI tool interfaces with an OpenAI LLM (and has support for other LLM API providers) to convert your plain text commands into OS/platform specific ffmpeg commands. 
 
