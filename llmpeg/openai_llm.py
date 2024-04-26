@@ -1,5 +1,6 @@
 """Implementation of LLMInterface for OpenAI LLM API."""
-from openai import OpenAI
+from openai import OpenAI, OpenAIError
+import sys
 from typing import List, Dict
 from llmpeg.llm_interface import LLMInterface
 
@@ -15,7 +16,14 @@ class OpenAILLMInterface(LLMInterface):
         """
         self._model_string = model_string
 
-        self.client = OpenAI()
+        try:
+            self.client = OpenAI()
+        except OpenAIError as e:
+            print(
+                f"OpenAI API Unable to initialize, likely due to missing API Key environment Variable: {e}",  # noqa: E501
+                file=sys.stderr,
+            )
+            exit(1)
 
         self.history: List[Dict[str, str]] = []
 

@@ -6,7 +6,6 @@ from typing import Dict, Optional, Tuple
 import json
 import platform
 import shutil
-import pwd
 import argparse
 import subprocess
 import sys
@@ -116,6 +115,7 @@ class LLMPEG:
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                     text=True,
+                    shell=True,
                 ).stdout,
             )
         elif os_type == "Linux":
@@ -160,13 +160,15 @@ class LLMPEG:
 
             # If SHELL variable is not set, fall back to the passwd entry
             try:
+                import pwd
+
                 user = pwd.getpwuid(os.getuid())
                 return user.pw_shell
             except KeyError:
                 return None  # Unable to find the default shell
         elif os_type == "Windows":
-            # TODO:
-            return None
+            # Windows defaults to cmd.exe
+            return "cmd.exe"
         elif os_type == "Darwin":
             # TODO
             return None
