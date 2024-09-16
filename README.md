@@ -43,7 +43,7 @@ Simply run `llmpeg "with your instructions in quotes"`. See examples below for m
 
 For more detailed information, run `llmpeg -h`:
 ```
-usage: llmpeg [-h] [--backend {openai}] [--openai_model OPENAI_MODEL] instructions
+Usage: main.py [-h] [-k KEY] [-b {openai}] [-m OPENAI_MODEL] instructions
 
 Convert your instructions into an ffmpeg command.
 
@@ -52,10 +52,11 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --backend {openai}    The backend LLM API provider to use. Defaults to 'openai'.
-  --openai_model OPENAI_MODEL
+  -k KEY, --key KEY     OpenAI API Key to use. Defaults to 'OPENAI_API_KEY' environment variable.
+  -b {openai}, --backend {openai}
+                        The backend LLM API provider to use. Defaults to 'openai'.
+  -m OPENAI_MODEL, --openai_model OPENAI_MODEL
                         The OpenAI LLM Model that you would like to use.
-
 ```
 ### OpenAI
 By default, `openai_model` is set to `gpt-3.5-turbo-0125`, which as of today, as the strongest model that can be used with a free developer account with $5 of free credit. If you have a developer account and are willing to pay for credits, you can change this to one of the `gpt-4` models for better performance and more accurate command generation.

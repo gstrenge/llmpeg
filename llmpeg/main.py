@@ -278,8 +278,20 @@ def main():
         type=str,
         help="A string containing instructions about the desired ffmpeg use",
     )
+
     parser.add_argument(
+        "-k",
+        "--key",
+        dest="key",
+        type=str,
+        default=os.environ.get("OPENAI_API_KEY", None),
+        help="OpenAI API Key to use. Defaults to 'OPENAI_API_KEY' environment variable.",
+    )
+
+    parser.add_argument(
+        "-b",
         "--backend",
+        dest="backend",
         type=str,
         default="openai",
         choices=["openai"],
@@ -287,7 +299,9 @@ def main():
     )
 
     parser.add_argument(
+        "-m",
         "--openai_model",
+        dest="openai_model",
         type=str,
         help="The OpenAI LLM Model that you would like to use.",
         default="gpt-3.5-turbo-0125",
@@ -296,7 +310,7 @@ def main():
     # Parse the command line arguments
     args = parser.parse_args()
     if args.backend == "openai":
-        llm = OpenAILLMInterface(args.openai_model)
+        llm = OpenAILLMInterface(args.openai_model, args.key)
     else:
         raise NotImplementedError(
             f"The LLM backend '{args.backend}' is not supported."

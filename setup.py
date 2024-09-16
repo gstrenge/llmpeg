@@ -7,7 +7,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        # Dependencies here, e.g., 'requests'
+        'openai'
     ],
     entry_points={
         "console_scripts": [
